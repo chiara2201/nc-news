@@ -1,12 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const ArticlePreview = ({ article }) => {
 	const date = article.created_at
 	const formattedDate = date.replace('T', ' ')
 	const formattedTime = formattedDate.replace('Z', '')
 
+	console.log(article)
+
 	return (
-		<a href="{item.url}" className="article">
+		<Link to={`/articles/${article.article_id}`} className="article">
 			<div className="article-image">
 				<img src={article.article_img_url} alt="{article.title}" />
 			</div>
@@ -18,6 +21,6 @@ export const ArticlePreview = ({ article }) => {
 					<small>Published at: {formattedTime}</small>
 				</div>
 			</div>
-		</a>
+		</Link>
 	)
 }
