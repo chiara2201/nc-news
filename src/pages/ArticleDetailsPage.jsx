@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { Article } from '../components/Article'
+import { CommentList } from '../components/CommentList'
 
 export const ArticleDetailsPage = () => {
 	const { id } = useParams()
@@ -18,5 +19,10 @@ export const ArticleDetailsPage = () => {
 
 	if (!article) return <h2>No article..yet</h2>
 
-	return <Article article={article} />
+	return (
+		<>
+			<Article article={article} />
+			<CommentList id={id} article={article} />
+		</>
+	)
 }
