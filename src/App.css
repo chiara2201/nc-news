@@ -82,6 +82,23 @@ body {
   border-radius: 8px;
 }
 
+.comments-container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  box-shadow: 0 0 10px grey;
+  width: 50em;
+  border-radius: 8px;
+}
+
+.single-comment-container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  width: 50em;
+  border-radius: 8px;
+}
+
 
 @media screen and (max-width: 1280px) {
   html {
