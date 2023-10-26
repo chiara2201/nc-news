@@ -14,7 +14,7 @@ export const ArticlesByTopicPage = () => {
 			.then((response) => {
 				setArticles(response.data.articles)
 			})
-	}, [])
+	}, [topic])
 
 	return (
 		<div>

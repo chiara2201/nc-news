@@ -9,7 +9,6 @@ export const TopicsNavBar = () => {
 		axios
 			.get(`https://nc-news-iofy.onrender.com/api/topics`)
 			.then((response) => {
-				console.log(response.data.topics)
 				setTopics(response.data.topics)
 			})
 	}, [])
@@ -17,7 +16,11 @@ export const TopicsNavBar = () => {
 	return (
 		<div>
 			{topics.map((topic) => {
-				return <Link to="/articles/topics/{topic.slug}">{topic.slug} </Link>
+				return (
+					<Link key={topic.slug} to={`/articles/topics/${topic.slug}`}>
+						{topic.slug}{' '}
+					</Link>
+				)
 			})}
 		</div>
 	)
