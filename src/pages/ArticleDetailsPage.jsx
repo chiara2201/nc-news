@@ -17,7 +17,7 @@ export const ArticleDetailsPage = () => {
 			})
 	}, [])
 
-	if (!article) return <h2>No article..yet</h2>
+	if (!article) return <h2>Loading...</h2>
 
 	return (
 		<>
