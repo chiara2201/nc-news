@@ -3,7 +3,10 @@ import axios from 'axios'
 
 export const CommentList = ({ id, article }) => {
 	const [comments, setComments] = useState([])
-	const date = article.created_at.replace('T', ' ').replace('Z', '')
+	const date = article.created_at
+		.replace('T', ' ')
+		.replace('Z', '')
+		.slice(0, 16)
 
 	useEffect(() => {
 		axios
@@ -13,11 +16,18 @@ export const CommentList = ({ id, article }) => {
 			})
 	}, [])
 
+	if (comments.length === 0) {
+		return <p>No comments yet</p>
+	}
+
 	return (
 		<div className="comments-container">
 			{comments.map((comment) => {
 				return (
-					<article className="single-comment-container">
+					<article
+						key={comment.comment_id}
+						className="single-comment-container"
+					>
 						<div>
 							{' '}
 							<p>{comment.author}</p>
