@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
+
 export const CommentList = ({ id, article }) => {
 	const [comments, setComments] = useState([])
 	const date = article.created_at
 		.replace('T', ' ')
 		.replace('Z', '')
 		.slice(0, 16)
+
 
 	useEffect(() => {
 		axios
