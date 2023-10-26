@@ -2,7 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export const ArticlePreview = ({ article }) => {
-	const date = article.created_at.replace('T', ' ').replace('Z', '')
+	const date = article.created_at
+		.replace('T', ' ')
+		.replace('Z', '')
+		.slice(0, 16)
 	// const formattedDate = date.replace('T', ' ')
 	// const formattedTime = formattedDate.replace('Z', '')
 

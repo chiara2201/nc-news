@@ -2,7 +2,10 @@ import React from 'react'
 import { Voter } from './Voter'
 
 export const Article = ({ article }) => {
-	const date = article.created_at.replace('T', ' ').replace('Z', '')
+	const date = article.created_at
+		.replace('T', ' ')
+		.replace('Z', '')
+		.slice(0, 16)
 
 	return (
 		<>
@@ -15,7 +18,7 @@ export const Article = ({ article }) => {
 				<img src={article.article_img_url} alt="{article.title}" />
 				<p>{article.body}</p>
 				<div>👍: {article.votes}</div>
-				<Voter votes={article.votes} />
+				<Voter article_id={article.article_id} votes={article.votes} />
 			</div>
 		</>
 	)
