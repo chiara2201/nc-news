@@ -8,7 +8,9 @@ import { CommentForm } from '../components/CommentForm'
 export const ArticleDetailsPage = () => {
 	const { id } = useParams()
 
+	const [isLoading, setIsLoading] = useState(true)
 	const [article, setArticle] = useState(null)
+	const [errorMessage, setErrorMessage] = useState('')
 
 	useEffect(() => {
 		axios
@@ -16,22 +18,29 @@ export const ArticleDetailsPage = () => {
 			.then((response) => {
 				setArticle(response.data.article)
 			})
+			.catch((err) => {
+				setErrorMessage('Article not found')
+			})
+			.finally(() => {
+				setIsLoading(false)
+			})
 	}, [])
 
 	const [comments, setComments] = useState([])
 
-	if (!article) return <h2>Loading...</h2>
-
-	return (
-		<>
-			<Article article={article} />
-			<CommentForm setComments={setComments} />
-			<CommentList
-				id={id}
-				article={article}
-				comments={comments}
-				setComments={setComments}
-			/>
-		</>
-	)
+	if (isLoading) return <h2>Loading...</h2>
+	else if (errorMessage) return <p>{errorMessage}</p>
+	else
+		return (
+			<>
+				<Article article={article} />
+				<CommentForm setComments={setComments} />
+				<CommentList
+					id={id}
+					article={article}
+					comments={comments}
+					setComments={setComments}
+				/>
+			</>
+		)
 }
