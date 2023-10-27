@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { DeleteCommentButton } from './DeleteCommentButton'
+import { loggedUser } from '../loggedUser'
+import { formatDate } from '../utils/formatDate'
 
 
 export const CommentList = ({ id, article }) => {
 	const [comments, setComments] = useState([])
-	const date = article.created_at
-		.replace('T', ' ')
-		.replace('Z', '')
-		.slice(0, 16)
+	const [successMessage, setSuccessMessage] = useState('')
 
 
 	useEffect(() => {
@@ -23,22 +23,32 @@ export const CommentList = ({ id, article }) => {
 	}
 
 	return (
-		<div className="comments-container">
-			{comments.map((comment) => {
-				return (
-					<article
-						key={comment.comment_id}
-						className="single-comment-container"
-					>
-						<div>
-							{' '}
-							<p>{comment.author}</p>
-							<p>{date}</p>
-						</div>
-						<p>{comment.body}</p>
-					</article>
-				)
-			})}
+		<div>
+			{successMessage && <p>{successMessage}</p>}
+			<div className="comments-container">
+				{comments.map((comment) => {
+					return (
+						<article
+							key={comment.comment_id}
+							className="single-comment-container"
+						>
+							<div>
+								{' '}
+								<p>{comment.author}</p>
+								<p>{formatDate(comment.created_at)}</p>
+							</div>
+							<p>{comment.body}</p>
+							{loggedUser.username === comment.author && (
+								<DeleteCommentButton
+									comment_id={comment.comment_id}
+									setComments={setComments}
+									setSuccessMessage={setSuccessMessage}
+								/>
+							)}
+						</article>
+					)
+				})}
+			</div>
 		</div>
 	)
 }

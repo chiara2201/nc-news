@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ArticleList } from '../components/ArticleList'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { TopicsNavBar } from '../components/TopicsNavBar'
 
 export const ArticlesByTopicPage = () => {
 	const { topic } = useParams()
@@ -18,6 +19,7 @@ export const ArticlesByTopicPage = () => {
 
 	return (
 		<div>
+			<TopicsNavBar />
 			<ArticleList articles={articles} />
 		</div>
 	)
