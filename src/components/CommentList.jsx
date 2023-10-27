@@ -4,11 +4,8 @@ import { DeleteCommentButton } from './DeleteCommentButton'
 import { loggedUser } from '../loggedUser'
 import { formatDate } from '../utils/formatDate'
 
-
-export const CommentList = ({ id, article }) => {
-	const [comments, setComments] = useState([])
+export const CommentList = ({ id, comments, setComments }) => {
 	const [successMessage, setSuccessMessage] = useState('')
-
 
 	useEffect(() => {
 		axios
