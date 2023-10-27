@@ -35,12 +35,7 @@ export const ArticleDetailsPage = () => {
 			<>
 				<Article article={article} />
 				<CommentForm setComments={setComments} />
-				<CommentList
-					id={id}
-					article={article}
-					comments={comments}
-					setComments={setComments}
-				/>
+				<CommentList id={id} comments={comments} setComments={setComments} />
 			</>
 		)
 }
