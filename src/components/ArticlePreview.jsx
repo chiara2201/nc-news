@@ -1,14 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { formatDate } from '../utils/formatDate'
 
 export const ArticlePreview = ({ article }) => {
-	const date = article.created_at
-		.replace('T', ' ')
-		.replace('Z', '')
-		.slice(0, 16)
-	// const formattedDate = date.replace('T', ' ')
-	// const formattedTime = formattedDate.replace('Z', '')
-
 	return (
 		<Link to={`/articles/${article.article_id}`} className="article">
 			<div className="article-image">
@@ -19,7 +13,7 @@ export const ArticlePreview = ({ article }) => {
 					<h2>{article.title}</h2>
 				</div>
 				<div className="article-details">
-					<small>Published at: {date}</small>
+					<small>Published at: {formatDate(article.created_at)}</small>
 				</div>
 			</div>
 		</Link>

@@ -22,6 +22,7 @@ export const TopicsNavBar = () => {
 					</Link>
 				)
 			})}
+			<Link to={'/topics'}>More</Link>
 		</div>
 	)
 }

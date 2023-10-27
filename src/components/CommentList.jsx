@@ -2,15 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { DeleteCommentButton } from './DeleteCommentButton'
 import { loggedUser } from '../loggedUser'
+import { formatDate } from '../utils/formatDate'
 
 export const CommentList = ({ id, article }) => {
 	const [comments, setComments] = useState([])
 	const [successMessage, setSuccessMessage] = useState('')
-
-	const date = article.created_at
-		.replace('T', ' ')
-		.replace('Z', '')
-		.slice(0, 16)
 
 	useEffect(() => {
 		axios
@@ -37,7 +33,7 @@ export const CommentList = ({ id, article }) => {
 							<div>
 								{' '}
 								<p>{comment.author}</p>
-								<p>{date}</p>
+								<p>{formatDate(comment.created_at)}</p>
 							</div>
 							<p>{comment.body}</p>
 							{loggedUser.username === comment.author && (
